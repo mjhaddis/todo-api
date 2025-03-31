@@ -1,6 +1,7 @@
-import { Schema } from "mongoose"
+import { Schema } from "mongoose";
 
-export const userTodo = new Schema ({
-    text: { type: String, required: true },
-    done: { type: Boolean, required: true },
-})
+export const userTodo = new Schema({
+  id: { type: Number, required: true },
+  text: { type: String, required: true },
+  done: { type: Boolean, required: true },
+});
