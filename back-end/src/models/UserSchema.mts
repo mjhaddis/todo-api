@@ -14,7 +14,7 @@ export default User;
 
 type UserType = InferSchemaType<typeof User.schema>;
 
-const convertedUser = (userFromDb: UserType): UserDto => {
+export const convertedUser = (userFromDb: UserType): UserDto => {
   return {
     email: userFromDb.email,
     todos: userFromDb.todos.map(
