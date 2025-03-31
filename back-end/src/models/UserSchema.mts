@@ -1,6 +1,6 @@
 import { InferSchemaType, model, Schema } from "mongoose";
 import { userTodo } from "./TodoSchema.mjs";
-import { UserDto } from "./userDto.mjs";
+import { UserDto } from "./UserDto.mjs";
 import { TodoDto } from "./TodoDto.mjs";
 
 const userSchema = new Schema({
@@ -14,7 +14,7 @@ export default User;
 
 type UserType = InferSchemaType<typeof User.schema>;
 
-const convertedUser = (userFromDb: UserType): UserDto => {
+export const convertedUser = (userFromDb: UserType): UserDto => {
   return {
     email: userFromDb.email,
     todos: userFromDb.todos.map(

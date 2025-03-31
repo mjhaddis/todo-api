@@ -1,7 +1,8 @@
-import User from "../models/userSchema.mjs";
+import User, { convertedUser } from "../models/UserSchema.mjs";
 import bcrypt from "bcryptjs";
+import { UserInputDto } from "../routes/registerRoute.mjs";
 
-export const createUser = async () => {
+export const createUser = async (data: UserInputDto) => {
     const existingUser = await User.findOne({ email: data.email });
 
     if (existingUser) {
@@ -12,10 +13,10 @@ export const createUser = async () => {
     const hash = await bcrypt.hash(data.password, salt);
 
     const newUser = await User.create({
-        email: data.name,
+        email: data.email,
         password: hash,
     });
 
-    return 
+    return convertedUser(newUser);
 
 }

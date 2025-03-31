@@ -1,6 +1,12 @@
 import express from 'express';
+import { createUser } from '../controllers/registerController.mjs';
 
 export const registerRouter = express.Router();
+
+export type UserInputDto = {
+    email: string;
+    password: string;
+  };
 
 registerRouter.post("/", async (req, res) => {
     try {
@@ -15,5 +21,4 @@ registerRouter.post("/", async (req, res) => {
     } catch (error: any) {
         res.status(500).json({ error: error.message })
     }
-
 });
