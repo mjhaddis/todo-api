@@ -1,22 +1,23 @@
-import express, { json } from 'express'
-import dotenv from 'dotenv'
-import mongoose from 'mongoose'
+import express, { json } from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
 
+dotenv.config();
 
-dotenv.config()
+const app = express();
 
-const app = express()
+app.use(json());
 
-app.use(json())
-
-const PORT = process.env.PORT || 3000
-const dbURL = process.env.MONGO_URL 
+const PORT = process.env.PORT || 3000;
+const dbURL = process.env.MONGO_URL;
 
 app.get("/ping", (_, res) => {
-    res.status(200).json({ message: "Server is runnin" })
-})
-
+  res.status(200).json({ message: "Server is runnin" });
+});
 
 app.listen(PORT, async () => {
-    console.log(`Server is running @ http://localhost:${PORT}`);
-})
+  await mongoose.connect(
+    "mongodb+srv://frejaedberg:S3CTipSfhwUx@cluster0.m1w1q.mongodb.net/userstodo?retryWrites=true&w=majority&appName=Cluster0"
+  );
+  console.log(`Server is running @ http://localhost:${PORT}`);
+});
