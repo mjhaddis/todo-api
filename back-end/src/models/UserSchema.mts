@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { userTodo } from "./TodoSchema.mjs";
+import { userTodo } from "./todoSchema.mjs";
 
 const userSchema = new Schema ({ 
     email: { type: String, required: true },
