@@ -17,7 +17,7 @@ app.get("/ping", (_, res) => {
   res.status(200).json({ message: "Server is runnin" });
 });
 
-app.get("/login", loginRouter);
+app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 
 app.listen(PORT, async () => {
