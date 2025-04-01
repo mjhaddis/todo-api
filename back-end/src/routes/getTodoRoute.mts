@@ -1,4 +1,7 @@
 import express from "express";
 
-const getTodoRouter = express.Router();
+export const getTodoRouter = express.Router();
 
+getTodoRouter.get("/", async (req, res) => {
+
+})

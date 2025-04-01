@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { loginRouter } from "./routes/loginRoute.mjs";
 import { registerRouter } from "./routes/registerRoute.mjs";
 import { auth } from "./middleware/auth.mjs";
+import { getTodoRouter } from "./routes/getTodoRoute.mjs";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.get("/login", loginRouter);
 app.use("/register", registerRouter);
 
 app.use(auth);
+app.use("/gettodos", getTodoRouter);
 
 app.listen(PORT, async () => {
   await mongoose.connect(
