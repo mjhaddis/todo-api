@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { loginRouter } from "./routes/loginRoute.mjs";
 import { registerRouter } from "./routes/registerRoute.mjs";
+import { auth } from "./middleware/auth.mjs";
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ app.get("/ping", (_, res) => {
 
 app.get("/login", loginRouter);
 app.use("/register", registerRouter);
+
+app.use(auth);
 
 app.listen(PORT, async () => {
   await mongoose.connect(
