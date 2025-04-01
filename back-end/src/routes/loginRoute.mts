@@ -1,5 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import { login } from "../controllers/loginController.mjs";
 
 export const loginRouter = express.Router();
 
