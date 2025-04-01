@@ -1,6 +1,7 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import { loginRouter } from "./routes/loginRoute.mjs";
 import { registerRouter } from "./routes/registerRoute.mjs";
 import { auth } from "./middleware/auth.mjs";
 
@@ -17,6 +18,7 @@ app.get("/ping", (_, res) => {
   res.status(200).json({ message: "Server is runnin" });
 });
 
+app.get("/login", loginRouter);
 app.use("/register", registerRouter);
 
 app.use(auth);
