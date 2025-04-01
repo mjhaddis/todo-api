@@ -42,7 +42,7 @@ h1 {
   text-align: left;
 }
 
-#loginForm {
+form {
   display: flex;
   flex-direction: column;
   gap: 10px;
