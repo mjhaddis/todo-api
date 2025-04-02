@@ -1,7 +1,10 @@
-import { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
-export const userTodo = new Schema({
+export const TodoSchema = new Schema({
   id: { type: Number, required: true },
   text: { type: String, required: true },
   done: { type: Boolean, required: true },
 });
+
+const Todo = model("user", TodoSchema);
+export default Todo;

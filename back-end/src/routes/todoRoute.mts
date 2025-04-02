@@ -1,12 +1,9 @@
-import express from "express";
+import express, { Router } from "express";
+import { auth } from "../middleware/auth.mjs";
+import { createTodo } from "../controllers/todoController.mjs";
 
-export const todoRouter = express.Router();
+const todoRouter = express.Router();
 
-todoRouter.post("/", (req, res) => {
-  const { text } = req.body;
+todoRouter.post("/", auth, createTodo);
 
-  try {
-    if (!text) {
-    }
-  } catch (error) {}
-});
+export default todoRouter;

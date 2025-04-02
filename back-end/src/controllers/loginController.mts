@@ -11,7 +11,8 @@ export const login = async (email: string, password: string) => {
   const success = await bcrypt.compare(password, foundUser.password);
 
   if (success) {
-    return convertedUser(foundUser);
+    // return convertedUser(foundUser);
+    return foundUser;
   } else {
     return null;
   }

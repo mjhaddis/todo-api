@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { loginRouter } from "./routes/loginRoute.mjs";
 import { registerRouter } from "./routes/registerRoute.mjs";
 import { auth } from "./middleware/auth.mjs";
+import todoRouter from "./routes/todoRoute.mjs";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.get("/ping", (_, res) => {
 
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
+app.use("/todos", todoRouter);
 
 app.use(auth);
 
