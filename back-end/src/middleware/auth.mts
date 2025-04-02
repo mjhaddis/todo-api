@@ -3,27 +3,25 @@ import jwt from "jsonwebtoken";
 import { UserDto } from "../models/UserDto.mjs";
 import User from "../models/UserSchema.mjs";
 
-
 export const auth = async (req: Request, res: Response, next: NextFunction) => {
-    const loginCookie = req.cookies["login"];
+  const loginCookie = req.cookies["login"];
 
-    if (!loginCookie) {
-        res.status(401).end();
+  if (!loginCookie) {
+    res.status(401).end();
+  } else {
+    const result = jwt.decode(loginCookie);
+
+    if (!result) {
+      res.status(401).end();
     } else {
-        const result = jwt.decode(loginCookie);
+      const theUser: UserDto = result as UserDto;
+      const userFromDb = await User.findOne({ email: theUser.email });
 
-        if(!result) {
-            res.status(401).end();
-        } else {
-            const theUser: UserDto = result as UserDto;
-            const userFromDb = await User.findOne({ email: theUser.email });
-
-            if (userFromDb) {
-                next();
-            } else {
-                res.status(403).send("Stop it!!");
-            }
-        }
+      if (userFromDb) {
+        next();
+      } else {
+        res.status(403).send("Stop it!!");
+      }
     }
-}
-
+  }
+};

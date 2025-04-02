@@ -5,12 +5,15 @@ import { loginRouter } from "./routes/loginRoute.mjs";
 import { registerRouter } from "./routes/registerRoute.mjs";
 import { auth } from "./middleware/auth.mjs";
 import todoRouter from "./routes/todoRoute.mjs";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const app = express();
 
 app.use(json());
+
+app.use(cookieParser());
 
 const PORT = process.env.PORT || 3000;
 const dbURL = process.env.MONGO_URL;
@@ -21,9 +24,10 @@ app.get("/ping", (_, res) => {
 
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
-app.use("/todos", todoRouter);
 
 app.use(auth);
+
+app.use("/todos", todoRouter);
 
 app.listen(PORT, async () => {
   await mongoose.connect(

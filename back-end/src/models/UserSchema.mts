@@ -8,7 +8,7 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   // todos: { type: [Todo], required: true },
-  todos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Todo" }],
+  todos: [{ type: mongoose.Schema.Types.ObjectId, ref: "todo" }],
 });
 
 // type UserType = InferSchemaType<typeof User.schema>;
