@@ -21,13 +21,15 @@ document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
                 password: userPassword
             },
             {
-                withCredentials: true  
+                withCredentials: true,
+                headers: {
+                    "Content-Type": "application/json",
+                }, 
             }
         )
         console.log(response.data)
     
         location.href = "/"
-      
     } catch (error) {
         alert("Login failed. Check email and password")
         console.error(error)
