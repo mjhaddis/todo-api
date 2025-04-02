@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { loginRouter } from "./routes/loginRoute.mjs";
 import { registerRouter } from "./routes/registerRoute.mjs";
 import cors from "cors"
+import { auth } from "./middleware/auth.mjs";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(
 app.use(express.json());
 app.use("/register", registerRouter);
 app.get("/login", loginRouter);
+app.use(auth);
 
 app.get("/ping", (_, res) => {
   res.status(200).json({ message: "Server is runnin" });
